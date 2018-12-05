@@ -1,6 +1,6 @@
 {
   "name": "justtools",
-  "version": "1.2.3",
+  "version": "1.2.7",
   "description": "SCIENTISM DATA PREPROCESS TOOLS BY ROTOTO",
   "main": "dist/index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "ROTOTO",
   "license": "ISC",
   "dependencies": {
+    "base-64": "^0.1.0",
     "lodash": "^4.17.10",
     "magetaro": "^1.1.3",
     "moment": "^2.22.2"

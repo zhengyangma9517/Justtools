@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+const base64 = require('base-64');
 
 export enum justOperator {
     Greater = '>',
@@ -199,7 +200,7 @@ export class JustMathGenius {
         if ( number1 === 0 ) {
             return 0;
         }
-        return  number1 === 0 ? ( Math.round((1 - Math.abs( (number1 - number2) / number1 )) * 1000) / 1000 ) : 0;
+        return  ( Math.round((1 - Math.abs( (number1 - number2) / number1 )) * 1000) / 1000 );
     }
 
     /**
@@ -278,3 +279,29 @@ export class JustMathGenius {
     }
 }
 
+export class JustSpy { // safe guard
+    constructor() {
+    }
+
+    /**
+     * base64 encoder
+     * @param str
+     * @param salt
+     * @param numOfSalt number of Salt
+     */
+    public static base64Encoder(str: string, salt: string, numOfSalt: number) {
+        if (!(str.length > 0)) {
+            return '';
+        }
+        const strArray = [];
+        for (let i = 0 ; i < str.length; i ++) {
+            strArray.push(str[i]);
+        }
+        const numberofSalt = Math.floor(Math.random() * numOfSalt) + 1;
+        for (let j = 0 ; j < numberofSalt; j ++) {
+            const splitter = Math.floor(Math.random() * strArray.length);
+            strArray[splitter] = `${salt}${strArray[splitter]}`;
+        }
+        return base64.encode(strArray.join(''));
+    }
+}
